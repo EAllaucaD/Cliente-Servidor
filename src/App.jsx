@@ -7,6 +7,7 @@ import {useState} from "react"
 
 import appFirebase from '../src/credenciales'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
+import FirestoreView from "../src/components/FirestoreView";
 
 const auth = getAuth(appFirebase)
 
@@ -32,7 +33,7 @@ function App() {
 
   return (
     <div>
-      {usuario ? <Home correoUsuario = {usuario.email} /> : <Login/>}
+      {usuario ? <FirestoreView correoUsuario = {usuario.email} /> : <Login/>}
     </div>
   )
 }
