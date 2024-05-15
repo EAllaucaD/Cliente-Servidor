@@ -27,9 +27,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          path: Cliente-Servidor
       - name: Install Railway
         run: npm i -g @railway/cli
-
+        working-directory: Cliente-Servidor
+      - name: List files for debugging before deploy
+        run: ls -la
         working-directory: Cliente-Servidor
       - name: Deploy Login with Railway
         run: railway up --service Cliente-Servidor
