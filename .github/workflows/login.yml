@@ -21,7 +21,7 @@ jobs:
         working-directory: Cliente-Servidor
   
   deploy:
-    needs: build
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Install Railway
