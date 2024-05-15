@@ -7,9 +7,8 @@ on:
 
 jobs:
 
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
         with:
@@ -20,10 +19,13 @@ jobs:
           node-version: 16.6.0
       - run: npm install
         working-directory: Cliente-Servidor
-
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Install Railway
         run: npm i -g @railway/cli
-
       - name: Deploy Login   with Railway
         run: railway up --service Cliente-Servidor
         working-directory: Cliente-Servidor
